@@ -10,7 +10,7 @@
 <body>
 <h1>Menu</h1>
 <form id="form" action="#" method="post">
-    <input type="text" name="input" size="60" placeholder="nhap mang theo dang: x y z..."><br>
+    <input type="text" name="input" size="60" placeholder="nhap tung phan tu vao mang theo dang: x y z..."><br>
     <select name="select" id="select">
         <option value="max">Tim so lon nhat</option>
         <option value="min">Tim so nho nhat</option>
@@ -36,34 +36,76 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //find max
     if ($select == "max") {
         echo findMaxInArr($arr);
+        echo "<pre>";
+        echo "Mang ban dau:";
+        print_r($arr);
     }
 
     //find min
     if ($select == "min") {
         echo findMinInArr($arr);
+        echo "<pre>";
+        echo "Mang ban dau:";
+        print_r($arr);
     }
 
     //find max positive even
     if ($select == 'max-positive-even') {
          echo findMaxPositiveEven($arr);
+        echo "<pre>";
+        echo "Mang ban dau:";
+        print_r($arr);
     }
 
     //find min negative odd
     if ($select == 'min-negative-odd'){
         echo findMinNegativeOdd($arr);
+        echo "<pre>";
+        echo "Mang ban dau:";
+        print_r($arr);
     }
 
     //find square num
     if ($select == "square-num") {
-        echo findSquareNum($arr);
+        print_r(findSquareNum($arr));
+
     }
 
     //find sum
     if ($select == 'sum'){
         echo findSum($arr);
+        echo "<pre>";
+        echo "Mang ban dau:";
+        print_r($arr);
     }
 
-    //
+    //find average
+    if ($select == 'sum-average') {
+        echo findAverage($arr);
+        echo "<pre>";
+        echo "Mang ban dau:";
+        print_r($arr);
+    }
+
+    //find above-average elements
+    if ($select == 'above-average'){
+        echo "<pre>";
+        print_r(findAboveAverageItems($arr));
+        echo "<br>";
+        echo "Mang ban dau:";
+        print_r($arr);
+    }
+
+    //sap xep tang dan
+    if ($select == "sort-asc") {
+         print_r(sortAscend($arr));
+    }
+
+    //Sap xep giam dan
+    if ($select == "sort-des") {
+        print_r(sortDescend($arr));
+    }
+
 }
 
 function findMaxInArr($arr)
@@ -119,12 +161,16 @@ function findMinNegativeOdd($arr){
     return $min;
 }
 
-//function findSquareNum($arr)
-//{
-//    foreach ($arr as $value){
-//        if (sqrt($value))
-//    }
-//}
+function findSquareNum($arr)
+{
+    return 'KHONG BIET LAM';
+}
+function checkRoot($item) {
+    return floor(sqrt($item));
+}
+function checkInt($item){
+    return $item%1==0;
+}
 
 function findSum($arr){
     $sum = 0;
@@ -133,5 +179,35 @@ function findSum($arr){
     }
     return $sum;
 }
+
+function findAverage($arr)
+{
+    $sum = findSum($arr);
+    return $sum/count($arr);
+}
+
+function findAboveAverageItems($arr){
+    $average = findAverage($arr);
+    $above_average = [];
+    foreach ($arr as $value){
+        if ($value > $average) {
+            $above_average[] = $value;
+        }
+    }
+    return $above_average;
+}
+
+function sortAscend($arr){
+    $newArr = $arr;
+    sort($newArr);
+    return $newArr;
+}
+
+function sortDescend($arr){
+    $newArr = $arr;
+    rsort($newArr);
+    return $newArr;
+}
+
 
 ?>

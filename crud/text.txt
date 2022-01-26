@@ -1,0 +1,6 @@
+Cac buoc CRUD
+READ: doc file
+DELETE
+CREATE
+DETAIL
+UPDATE
