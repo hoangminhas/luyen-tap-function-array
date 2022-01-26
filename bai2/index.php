@@ -44,7 +44,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //find max positive even
+    if ($select == 'max-positive-even') {
+         echo findMaxPositiveEven($arr);
+    }
 
+    //find min negative odd
+    if ($select == 'min-negative-odd'){
+        echo findMinNegativeOdd($arr);
+    }
+
+    //find square num
+    if ($select == "square-num") {
+        echo findSquareNum($arr);
+    }
+
+    //find sum
+    if ($select == 'sum'){
+        echo findSum($arr);
+    }
+
+    //
 }
 
 function findMaxInArr($arr)
@@ -57,6 +76,7 @@ function findMaxInArr($arr)
     }
     return $max;
 }
+
 function findMinInArr($arr)
 {
     $min = $arr[0];
@@ -67,8 +87,51 @@ function findMinInArr($arr)
     }
     return $min;
 }
+
 function findMaxPositiveEven($arr)
 {
-
+    $newArr =  array_filter($arr, "checkEven");
+    $max = $newArr[0];
+    foreach ($newArr as $value){
+        if ($max < $value) {
+            $max = $value;
+        }
+    }
+    return $max;
 }
+function checkEven($item){
+  return $item%2==0 && $item>=0;
+}
+
+function findMinNegativeOdd($arr){
+    $oddArr = [];
+    foreach ($arr as $value){
+        if ($value%2!=0 && $value<0){
+            $oddArr[] = $value;
+        }
+    }
+    $min = $oddArr[0];
+    foreach ($oddArr as $value){
+        if ($min > $value){
+            $min = $value;
+        }
+    }
+    return $min;
+}
+
+//function findSquareNum($arr)
+//{
+//    foreach ($arr as $value){
+//        if (sqrt($value))
+//    }
+//}
+
+function findSum($arr){
+    $sum = 0;
+    foreach ($arr as $value){
+        $sum += $value;
+    }
+    return $sum;
+}
+
 ?>
